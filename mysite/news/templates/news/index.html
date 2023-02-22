@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.rtl.min.css"
+          integrity="sha384-WJUUqfoMmnfkBLne5uxXj+na/c7sesSJ32gI7GfCk4zO4GthUKhSEGyvQ839BC51" crossorigin="anonymous">
+
+    <title>{{ title }}</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Main</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Creat News</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-3">
+    <h1>{{ title }}</h1>
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="list-group">
+                {% for item in categories %}
+                <a href="/category/{{ item.pk }}" class="list-group-item list-group-item-action">{{ item.title }}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            {% for item in news %}
+            <div class="card text-center mt-3">
+                <div class="card-header">
+                    Category: {{ item.category }}
+                </div>
+                <div class="card-body">
+                    <div class="media">
+                        {% if item.photo %}
+                            <img src="{{ item.photo.url }}" alt="" width="350" class="mr-3">
+                        {% else %}
+                            <img src="https://picsum.photos/id/1060/350/235/?blur=2" alt="" class="mr-3">
+                        {% endif %}
+                        <div class="media-bady">
+                            <h5 class="card-title">{{ item.title }}</h5>
+                            <p class="card-text">{{ item.content|safe|linebreaks|truncatewords:50 }}</p>
+                            <a href="#" class="btn btn-primary">Read more...</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    {{ item.created_at|date:"Y-m-d H:i" }}
+                </div>
+            </div>
+            {% endfor%}
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
