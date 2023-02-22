@@ -12,15 +12,15 @@
 <body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">Navbar</a>
+        <a class="navbar-brand" href="{% url 'home' %}">Navbar</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Main</a></li>
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Creat News</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'home' %}">Main</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'home' %}">Creat News</a></li>
             </ul>
         </div>
     </div>
@@ -32,7 +32,7 @@
         <div class="col-md-3">
             <div class="list-group">
                 {% for item in categories %}
-                <a href="/category/{{ item.pk }}" class="list-group-item list-group-item-action">{{ item.title }}</a>
+                <a href="{% url 'category' item.pk %}" class="list-group-item list-group-item-action">{{ item.title }}</a>
                 {% endfor %}
             </div>
         </div>
@@ -41,7 +41,7 @@
             {% for item in news %}
             <div class="card text-center mt-3">
                 <div class="card-header">
-                    Category: {{ item.category }}
+                    Category: <a href="{% url 'category' item.category.pk %}">{{ item.category }}</a>
                 </div>
                 <div class="card-body">
                     <div class="media">
