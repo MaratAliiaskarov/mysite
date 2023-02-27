@@ -6,43 +6,34 @@
 
 
 {% block sidebar %}
-    <div class="col-md-3">
-        <div class="list-group">
-            {% for item in categories %}
-                <a href="{% url 'category' item.pk %}"
-                   class="list-group-item list-group-item-action">{{ item.title }}</a>
-            {% endfor %}
-        </div>
-    </div>
+{% include 'inc/_sidebar.html' %}
 {% endblock %}
 
 
 {% block content %}
-    <div class="col-md-9">
-        {% for item in news %}
-            <div class="card text-center mt-3">
-                <div class="card-header">
-                    Category: {{ item.category }}
-                </div>
-                <div class="card-body">
-                    <div class="media">
-                        {% if item.photo %}
-                            <img src="{{ item.photo.url }}" alt="" width="350" class="mr-3">
-                        {% else %}
-                            <img src="https://picsum.photos/id/1060/350/235/?blur=2" alt="" class="mr-3">
-                        {% endif %}
-                        <div class="media-bady">
-                            <h5 class="card-title">{{ item.title }}</h5>
-                            <p class="card-text">{{ item.content|safe|linebreaks|truncatewords:50 }}</p>
-                            <a href="#" class="btn btn-primary">Read more...</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer text-muted">
-                    {{ item.created_at|date:"Y-m-d H:i" }}
+{% for item in news %}
+    <div class="card text-center mt-3">
+        <div class="card-header">
+            Category: {{ item.category }}
+        </div>
+        <div class="card-body">
+            <div class="media">
+                {% if item.photo %}
+                    <img src="{{ item.photo.url }}" alt="" width="350" class="mr-3">
+                {% else %}
+                    <img src="https://picsum.photos/id/1060/350/235/?blur=2" alt="" class="mr-3">
+                {% endif %}
+                <div class="media-bady">
+                    <h5 class="card-title">{{ item.title }}</h5>
+                    <p class="card-text">{{ item.content|safe|linebreaks|truncatewords:50 }}</p>
+                    <a href="#" class="btn btn-primary">Read more...</a>
                 </div>
             </div>
-        {% endfor %}
+        </div>
+        <div class="card-footer text-muted">
+            {{ item.created_at|date:"Y-m-d H:i" }}
+        </div>
     </div>
+{% endfor %}
 {% endblock %}
 
