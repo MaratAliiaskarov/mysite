@@ -1,6 +1,6 @@
 {% load news_tags %}
 
-
+{% comment %}
 <div class="list-group">
     {% get_list_categories as categories %}
     {% for item in categories %}
@@ -9,5 +9,5 @@
 </div>
 
 <br>
-
-{% show_categories arg2='User' arg1='Hi'%}
+{% endcomment %}
+{% show_categories %}
