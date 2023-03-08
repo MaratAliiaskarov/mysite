@@ -1,5 +1,7 @@
 from django import forms
 from .models import News
+import re
+from django.core.exceptions import ValidationError
 
 
 class NewsForm(forms.ModelForm):
@@ -13,6 +15,11 @@ class NewsForm(forms.ModelForm):
             'category': forms.Select(attrs={'class': 'form-control'}),
         }
 
+    def clean_title(self):
+        title = self.cleaned_data['title']
+        if re.match(r'\d', title):
+            raise ValidationError('Name must not start with a number')
+        return title
 
     # title = forms.CharField(max_length=150, widget=forms.TextInput(attrs={'class': 'form-control'}))
     # content = forms.CharField(required=False, widget=forms.Textarea(
