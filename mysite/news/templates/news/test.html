@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Test Page :: {{ block.super }}
+{% endblock %}
+
+{% block sidebar %}
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+
+    {% for name in page_obj.object_list %}
+        <p>{{ name }}</p>
+
+    {% endfor %}
+
+
+{% endblock %}
