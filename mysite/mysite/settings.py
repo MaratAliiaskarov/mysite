@@ -134,3 +134,11 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 INTERNAL_IPS = ["127.0.0.1"]
+
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 2525
+EMAIL_HOST_USER = 'toko.li12345@gmail.com'
+EMAIL_HOST_PASSWORD = 'tokoli12345'
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
